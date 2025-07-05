@@ -30,6 +30,10 @@ import { routes } from './routes.js'
 
 // HTTP Status Code
 
+// Query Parameters: URL Stateful => Filtros, paginação, não-obrigatórios
+// Route Parameters: Identificação de recurso
+// Request body: Envio de informações de um formulário (HTTPs)
+
 const server = http.createServer(async (req, res) => {
   const { method, url } = req
 
