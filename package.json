@@ -10,9 +10,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
+  "type": "commonjs",
   "dependencies": {
     "fastify": "^5.8.5",
+    "knex": "^3.2.9",
+    "sqlite3": "^6.0.1",
     "typescript": "^6.0.3"
   },
   "devDependencies": {
