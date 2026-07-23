@@ -1,4 +1,4 @@
-import { User } from '../../prisma/generated/prisma/browser'
+import { User } from '../../prisma/generated/prisma/client'
 import { UserCreateInput } from '../../prisma/generated/prisma/models'
 
 export interface UsersRepository {

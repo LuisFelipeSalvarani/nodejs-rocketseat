@@ -1,4 +1,4 @@
-import { CheckIn } from '../../prisma/generated/prisma/browser'
+import { CheckIn } from '../../prisma/generated/prisma/client'
 import { CheckInUncheckedCreateInput } from '../../prisma/generated/prisma/models'
 
 export interface CheckInsRepository {
