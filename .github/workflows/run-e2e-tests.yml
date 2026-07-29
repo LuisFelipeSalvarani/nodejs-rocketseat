@@ -10,8 +10,7 @@ jobs:
     services:
       postgres:
         image: bitnamilegacy/postgresql
-        ports:
-          - 5432:5432
+        ports: ["5432:5432"]
         env:
           POSTGRESQL_USERNAME: docker
           POSTGRESQL_PASSWORD: docker
@@ -24,6 +23,9 @@ jobs:
           node-version: 24
           cache: "npm"
       - run: npm ci
+      - run: npx prisma generate
+        env:
+          DATABASE_URL: "postgresql://docker:docker@localhost:5432/apisolid?schema=public"
       - run: npm run test:e2e
         env:
           JWT_SECRET: testing
