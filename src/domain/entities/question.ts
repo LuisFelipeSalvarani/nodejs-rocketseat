@@ -9,5 +9,4 @@ interface QuestionProps {
 }
 
 export class Question extends Entity<QuestionProps> {
-
 }

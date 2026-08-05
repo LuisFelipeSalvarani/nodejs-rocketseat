@@ -5,5 +5,4 @@ interface InstructorProps {
 }
 
 export class Instructor extends Entity<InstructorProps> {
-
 }
