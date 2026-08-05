@@ -19,6 +19,10 @@
     "skipLibCheck": true,
     "moduleResolution": "node16",
 
-    "types": ["node"]
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    "types": ["node", "vitest/globals"]
   }
 }
