@@ -4,12 +4,23 @@
   "javascript": {
     "formatter": {
       "semicolons": "asNeeded"
+    },
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
     }
   },
   "linter": {
     "rules": {
       "style": {
-        "useImportType": "off"
+        "useImportType": "off",
+        "useErrorCause": "off"
+      }
+    }
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "useSortedKeys": "off"
       }
     }
   }
