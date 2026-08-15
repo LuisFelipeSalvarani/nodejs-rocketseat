@@ -1,0 +1,47 @@
+import "dotenv/config"
+import { execSync } from "node:child_process"
+import { randomUUID } from "node:crypto"
+import { PrismaPg } from "@prisma/adapter-pg"
+import { PrismaClient } from "../generated/prisma/client.js"
+
+if (!process.env.DATABASE_URL) {
+  throw new Error("Please provider a DATABASE_URL environment variable.")
+}
+
+const schema =
+  new URL(process.env.DATABASE_URL).searchParams.get("schema") || "public"
+
+const adapter = new PrismaPg(
+  { connectionString: process.env.DATABASE_URL },
+  { schema }
+)
+
+const prisma = new PrismaClient({ adapter })
+
+// biome-ignore lint/suspicious/noShadow: necessary
+function generatedUniqueDatabaseURL(schemaId: string) {
+  if (!process.env.DATABASE_URL) {
+    throw new Error("Please provider a DATABASE_URL environment variable.")
+  }
+
+  const url = new URL(process.env.DATABASE_URL)
+
+  url.searchParams.set("schema", schemaId)
+
+  return url.toString()
+}
+
+const schemaId = randomUUID()
+
+beforeAll(() => {
+  const databaseURL = generatedUniqueDatabaseURL(schemaId)
+
+  process.env.DATABASE_URL = databaseURL
+
+  execSync("pnpm prisma migrate deploy")
+})
+
+afterAll(async () => {
+  await prisma.$executeRawUnsafe(`DROP SCHEMA IF EXISTS "${schemaId}" CASCADE`)
+  await prisma.$disconnect()
+})
