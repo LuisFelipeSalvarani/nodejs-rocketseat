@@ -13,7 +13,8 @@
     "rules": {
       "style": {
         "useImportType": "off",
-        "useErrorCause": "off"
+        "useErrorCause": "off",
+        "noSubstr": "off"
       },
       "correctness": {
         "noUndeclaredVariables": "off"
@@ -23,7 +24,8 @@
   "assist": {
     "actions": {
       "source": {
-        "useSortedKeys": "off"
+        "useSortedKeys": "off",
+        "useSortedInterfaceMembers": "off"
       }
     }
   }
