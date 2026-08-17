@@ -1,9 +1,9 @@
 import { PaginationParams } from "../../src/core/repositories/pagination-params.js"
-import { AnswerCommentRepository } from "../../src/domain/forum/application/repositories/answer-comments-repository.js"
+import { AnswerCommentsRepository } from "../../src/domain/forum/application/repositories/answer-comments-repository.js"
 import { AnswerComment } from "../../src/domain/forum/enterprise/entities/answer-comment.js"
 
 export class InMemoryAnswerCommentsRepository
-  implements AnswerCommentRepository
+  implements AnswerCommentsRepository
 {
   public items: AnswerComment[] = []
 

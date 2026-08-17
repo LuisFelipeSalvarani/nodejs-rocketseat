@@ -1,0 +1,16 @@
+import { Injectable } from "@nestjs/common"
+import { QuestionAttachmentsRepository } from "../../../../domain/forum/application/repositories/question-attachments-repository.js"
+import { QuestionAttachment } from "../../../../domain/forum/enterprise/entities/question-attachment.js"
+
+@Injectable()
+export class PrismaQuestionAttachmentsRepository
+  implements QuestionAttachmentsRepository
+{
+  findManyByQuestionId(_questionId: string): Promise<QuestionAttachment[]> {
+    throw new Error("Method not implemented.")
+  }
+
+  deleteManyByQuestionId(_questionId: string): Promise<void> {
+    throw new Error("Method not implemented.")
+  }
+}

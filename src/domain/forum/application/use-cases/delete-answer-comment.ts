@@ -1,7 +1,7 @@
 import { Either, left, right } from "../../../../core/either.js"
 import { NotAllowedError } from "../../../../core/errors/errors/not-allowed-error.js"
 import { ResourceNotFoundError } from "../../../../core/errors/errors/resource-not-found-error.js"
-import { AnswerCommentRepository } from "../repositories/answer-comments-repository.js"
+import { AnswerCommentsRepository } from "../repositories/answer-comments-repository.js"
 
 interface DeleteAnswerCommentUseCaseRequest {
   authorId: string
@@ -15,7 +15,7 @@ type DeleteAnswerCommentUseCaseResponse = Either<
 
 export class DeleteAnswerCommentUseCase {
   constructor(
-    private readonly answerCommentRepository: AnswerCommentRepository
+    private readonly answerCommentRepository: AnswerCommentsRepository
   ) {}
 
   async execute({

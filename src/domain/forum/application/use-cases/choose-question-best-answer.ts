@@ -2,8 +2,8 @@ import { Either, left, right } from "../../../../core/either.js"
 import { NotAllowedError } from "../../../../core/errors/errors/not-allowed-error.js"
 import { ResourceNotFoundError } from "../../../../core/errors/errors/resource-not-found-error.js"
 import { Question } from "../../enterprise/entities/question.js"
-import { AnswerRepository } from "../repositories/answers-repository.js"
-import { QuestionRepository } from "../repositories/questions-repository.js"
+import { AnswersRepository } from "../repositories/answers-repository.js"
+import { QuestionsRepository } from "../repositories/questions-repository.js"
 
 interface ChooseQuestionBestAnswerUseCaseRequest {
   authorId: string
@@ -19,8 +19,8 @@ type ChooseQuestionBestAnswerUseCaseResponse = Either<
 
 export class ChooseQuestionBestAnswerUseCase {
   constructor(
-    private readonly questionRepository: QuestionRepository,
-    private readonly answerRepository: AnswerRepository
+    private readonly questionRepository: QuestionsRepository,
+    private readonly answerRepository: AnswersRepository
   ) {}
 
   async execute({

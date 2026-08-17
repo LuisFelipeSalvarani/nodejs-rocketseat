@@ -3,7 +3,7 @@ import { UniqueEntityID } from "../../../../core/entities/unique-entity-id.js"
 import { Question } from "../../enterprise/entities/question.js"
 import { QuestionAttachment } from "../../enterprise/entities/question-attachment.js"
 import { QuestionAttachmentList } from "../../enterprise/entities/question-attachment-list.js"
-import { QuestionRepository } from "../repositories/questions-repository.js"
+import { QuestionsRepository } from "../repositories/questions-repository.js"
 
 interface CreateQuestionUseCaseRequest {
   authorId: string
@@ -20,7 +20,7 @@ type CreateQuestionUseCaseResponse = Either<
 >
 
 export class CreateQuestionUseCase {
-  constructor(private readonly questionRepository: QuestionRepository) {}
+  constructor(private readonly questionRepository: QuestionsRepository) {}
 
   async execute({
     authorId,

@@ -1,10 +1,10 @@
 import { DomainEvents } from "../../src/core/events/domain-events.js"
 import { PaginationParams } from "../../src/core/repositories/pagination-params.js"
 import { QuestionAttachmentsRepository } from "../../src/domain/forum/application/repositories/question-attachments-repository.js"
-import { QuestionRepository } from "../../src/domain/forum/application/repositories/questions-repository.js"
+import { QuestionsRepository } from "../../src/domain/forum/application/repositories/questions-repository.js"
 import { Question } from "../../src/domain/forum/enterprise/entities/question.js"
 
-export class InMemoryQuestionsRepository implements QuestionRepository {
+export class InMemoryQuestionsRepository implements QuestionsRepository {
   items: Question[] = []
 
   constructor(

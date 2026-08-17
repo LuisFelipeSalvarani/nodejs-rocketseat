@@ -14,7 +14,8 @@
       "style": {
         "useImportType": "off",
         "useErrorCause": "off",
-        "noSubstr": "off"
+        "noSubstr": "off",
+        "useConsistentMethodSignatures": "off"
       },
       "correctness": {
         "noUndeclaredVariables": "off"

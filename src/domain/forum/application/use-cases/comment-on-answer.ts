@@ -2,8 +2,8 @@ import { Either, left, right } from "../../../../core/either.js"
 import { UniqueEntityID } from "../../../../core/entities/unique-entity-id.js"
 import { ResourceNotFoundError } from "../../../../core/errors/errors/resource-not-found-error.js"
 import { AnswerComment } from "../../enterprise/entities/answer-comment.js"
-import { AnswerCommentRepository } from "../repositories/answer-comments-repository.js"
-import { AnswerRepository } from "../repositories/answers-repository.js"
+import { AnswerCommentsRepository } from "../repositories/answer-comments-repository.js"
+import { AnswersRepository } from "../repositories/answers-repository.js"
 
 interface CommentOnAnswerUseCaseRequest {
   authorId: string
@@ -20,8 +20,8 @@ type CommentOnAnswerUseCaseResponse = Either<
 
 export class CommentOnAnswerUseCase {
   constructor(
-    private readonly answerRepository: AnswerRepository,
-    private readonly answerCommentRepository: AnswerCommentRepository
+    private readonly answerRepository: AnswersRepository,
+    private readonly answerCommentRepository: AnswerCommentsRepository
   ) {}
 
   async execute({
