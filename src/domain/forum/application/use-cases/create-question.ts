@@ -1,3 +1,4 @@
+import { Injectable } from "@nestjs/common"
 import { Either, right } from "../../../../core/either.js"
 import { UniqueEntityID } from "../../../../core/entities/unique-entity-id.js"
 import { Question } from "../../enterprise/entities/question.js"
@@ -19,6 +20,7 @@ type CreateQuestionUseCaseResponse = Either<
   }
 >
 
+@Injectable()
 export class CreateQuestionUseCase {
   constructor(private readonly questionRepository: QuestionsRepository) {}
 
