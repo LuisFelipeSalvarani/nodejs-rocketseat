@@ -25,12 +25,12 @@ export class CreateQuestionController {
     @CurrentUser() user: UserPayload
   ) {
     const { title, content } = body
-    const { sub } = user
+    const authorId = user.sub
 
     const result = await this.createQuestion.execute({
       title,
       content,
-      authorId: sub,
+      authorId,
       attachmentsIds: [],
     })
 

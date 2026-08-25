@@ -7,11 +7,9 @@ import { StudentFactory } from "../../../../test/factories/make-student.js"
 import { Slug } from "../../../domain/forum/enterprise/entities/value-objects/slug.js"
 import { AppModule } from "../../app.module.js"
 import { DatabaseModule } from "../../database/database.module.js"
-import { PrismaService } from "../../database/prisma/prisma.service.js"
 
 describe("Get question by slug (E2E)", () => {
   let app: INestApplication
-  let _prisma: PrismaService
   let studentFactory: StudentFactory
   let questionFactory: QuestionFactory
   let jwt: JwtService
@@ -24,7 +22,6 @@ describe("Get question by slug (E2E)", () => {
 
     app = moduleRef.createNestApplication()
 
-    _prisma = moduleRef.get(PrismaService)
     studentFactory = moduleRef.get(StudentFactory)
     questionFactory = moduleRef.get(QuestionFactory)
     jwt = moduleRef.get(JwtService)
