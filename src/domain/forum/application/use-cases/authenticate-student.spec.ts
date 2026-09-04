@@ -1,7 +1,7 @@
 import { FakeEncrypter } from "../../../../../test/cryptography/fake-encrypter.js"
 import { FakeHasher } from "../../../../../test/cryptography/fake-hasher.js"
 import { makeStudent } from "../../../../../test/factories/make-student.js"
-import { InMemoryStudentsRepository } from "../../../../../test/repositories/in-memory-student-repository.js"
+import { InMemoryStudentsRepository } from "../../../../../test/repositories/in-memory-students-repository.js"
 import { AuthenticateStudentUseCase } from "./authenticate-student.js"
 
 let inMemoryStudentsRepository: InMemoryStudentsRepository
