@@ -17,8 +17,10 @@ import { FetchQuestionCommentsUseCase } from "../../domain/forum/application/use
 import { FetchRecentQuestionsUseCase } from "../../domain/forum/application/use-cases/fetch-recent-questions.js"
 import { GetQuestionBySlugUseCase } from "../../domain/forum/application/use-cases/get-question-by-slug.js"
 import { RegisterStudentUseCase } from "../../domain/forum/application/use-cases/register-student.js"
+import { UploadAndCreateAttachmentUseCase } from "../../domain/forum/application/use-cases/upload-and-create-attachmente.js"
 import { CryptographyModule } from "../cryptography/cryptography.module.js"
 import { DatabaseModule } from "../database/database.module.js"
+import { StorageModule } from "../storage/storage.module.js"
 import { AnswerQuestionController } from "./controllers/answer-question.controller.js"
 import { AuthenticationController } from "./controllers/authenticate.controller.js"
 import { ChooseQuestionBestAnswerController } from "./controllers/choose-question-best-answer.controller.js"
@@ -40,7 +42,7 @@ import { GetQuestionBySlugController } from "./controllers/get-question-by-slug.
 import { UploadAttachmentController } from "./controllers/upload-attachment.controller.js"
 
 @Module({
-  imports: [DatabaseModule, CryptographyModule],
+  imports: [DatabaseModule, CryptographyModule, StorageModule],
   controllers: [
     CreateAccountController,
     AuthenticationController,
@@ -81,6 +83,7 @@ import { UploadAttachmentController } from "./controllers/upload-attachment.cont
     DeleteAnswerCommentUseCase,
     FetchQuestionCommentsUseCase,
     FetchAnswerCommentsUseCase,
+    UploadAndCreateAttachmentUseCase,
   ],
 })
 export class HttpModule {}
