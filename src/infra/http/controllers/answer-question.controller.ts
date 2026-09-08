@@ -13,6 +13,7 @@ import { ZodValidationPipe } from "../pipes/zod-validation-pipe.js"
 
 const answerQuestionBodySchema = z.object({
   content: z.string(),
+  attachments: z.array(z.uuid()),
 })
 
 const bodyValidationPipe = new ZodValidationPipe(answerQuestionBodySchema)
@@ -30,14 +31,14 @@ export class AnswerQuestionController {
     @CurrentUser() user: UserPayload,
     @Param("questionId") questionId: string
   ) {
-    const { content } = body
+    const { content, attachments } = body
     const authorId = user.sub
 
     const result = await this.answerQuestion.execute({
       content,
       questionId,
       authorId,
-      attachmentsIds: [],
+      attachmentsIds: attachments,
     })
 
     if (result.isLeft()) {
