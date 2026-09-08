@@ -2,6 +2,7 @@ import { Injectable } from "@nestjs/common"
 import { PaginationParams } from "../../../../core/repositories/pagination-params.js"
 import { QuestionCommentsRepository } from "../../../../domain/forum/application/repositories/question-comments-repository.js"
 import { QuestionComment } from "../../../../domain/forum/enterprise/entities/question-comment.js"
+import { PrismaCommentWithAuthorMapper } from "../mappers/prisma-comment-with-author-mapper.js"
 import { PrismaQuestionCommentMapper } from "../mappers/prisma-question-comment-mapper.js"
 import { PrismaService } from "../prisma.service.js"
 
@@ -38,6 +39,27 @@ export class PrismaQuestionCommentsRepository
     })
 
     return questions.map(PrismaQuestionCommentMapper.toDomain)
+  }
+
+  async findManyByQuestionIdWithAuthor(
+    questionId: string,
+    { page }: PaginationParams
+  ) {
+    const questions = await this.prisma.comment.findMany({
+      where: {
+        questionId,
+      },
+      include: {
+        author: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return questions.map(PrismaCommentWithAuthorMapper.toDomain)
   }
 
   async create(questionComment: QuestionComment) {
