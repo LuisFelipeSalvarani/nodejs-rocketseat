@@ -21,7 +21,8 @@
         "noUndeclaredVariables": "off"
       },
       "suspicious": {
-        "useAwait": "off"
+        "useAwait": "off",
+        "noUnnecessaryConditions": "off"
       }
     }
   },
