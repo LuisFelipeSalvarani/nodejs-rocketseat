@@ -3,6 +3,7 @@ import { PaginationParams } from "../../../../core/repositories/pagination-param
 import { AnswerCommentsRepository } from "../../../../domain/forum/application/repositories/answer-comments-repository.js"
 import { AnswerComment } from "../../../../domain/forum/enterprise/entities/answer-comment.js"
 import { PrismaAnswerCommentMapper } from "../mappers/prisma-answer-comment-mapper.js"
+import { PrismaCommentWithAuthorMapper } from "../mappers/prisma-comment-with-author-mapper.js"
 import { PrismaService } from "../prisma.service.js"
 
 @Injectable()
@@ -38,6 +39,27 @@ export class PrismaAnswerCommentsRepository
     })
 
     return answers.map(PrismaAnswerCommentMapper.toDomain)
+  }
+
+  async findManyByAnswerIdWithAuthor(
+    answerId: string,
+    { page }: PaginationParams
+  ) {
+    const answers = await this.prisma.comment.findMany({
+      where: {
+        answerId,
+      },
+      include: {
+        author: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return answers.map(PrismaCommentWithAuthorMapper.toDomain)
   }
 
   async create(answerComment: AnswerComment) {
