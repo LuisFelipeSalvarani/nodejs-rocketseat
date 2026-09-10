@@ -1,14 +1,14 @@
 import { DomainEvents } from "../../src/core/events/domain-events.js"
 import { PaginationParams } from "../../src/core/repositories/pagination-params.js"
-import { AnswerAttachmentsRepository } from "../../src/domain/forum/application/repositories/answer-attachments-repository.js"
 import { AnswersRepository } from "../../src/domain/forum/application/repositories/answers-repository.js"
 import { Answer } from "../../src/domain/forum/enterprise/entities/answer.js"
+import { InMemoryAnswerAttachmentsRepository } from "./in-memory-answer-attachments-repository.js"
 
 export class InMemoryAnswersRepository implements AnswersRepository {
   items: Answer[] = []
 
   constructor(
-    private readonly answerAttachmentRepository: AnswerAttachmentsRepository
+    private readonly answerAttachmentsRepository: InMemoryAnswerAttachmentsRepository
   ) {}
 
   async findById(id: string) {
@@ -34,7 +34,7 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 
     DomainEvents.dispatchEventsForAggregate(answer.id)
 
-    this.answerAttachmentRepository.createMany(answer.attachments.getItems())
+    this.answerAttachmentsRepository.createMany(answer.attachments.getItems())
   }
 
   async save(answer: Answer) {
@@ -44,9 +44,11 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 
     DomainEvents.dispatchEventsForAggregate(answer.id)
 
-    this.answerAttachmentRepository.createMany(answer.attachments.getNewItems())
+    this.answerAttachmentsRepository.createMany(
+      answer.attachments.getNewItems()
+    )
 
-    this.answerAttachmentRepository.deleteMany(
+    this.answerAttachmentsRepository.deleteMany(
       answer.attachments.getRemovedItems()
     )
   }
@@ -56,6 +58,6 @@ export class InMemoryAnswersRepository implements AnswersRepository {
 
     this.items.splice(itemIndex, 1)
 
-    this.answerAttachmentRepository.deleteManyByAnswerId(answer.id.toString())
+    this.answerAttachmentsRepository.deleteManyByAnswerId(answer.id.toString())
   }
 }
