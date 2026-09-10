@@ -15,14 +15,17 @@
         "useImportType": "off",
         "useErrorCause": "off",
         "noSubstr": "off",
-        "useConsistentMethodSignatures": "off"
+        "useConsistentMethodSignatures": "off",
+        "noIncrementDecrement": "off"
       },
       "correctness": {
-        "noUndeclaredVariables": "off"
+        "noUndeclaredVariables": "off",
+        "noUnusedInstantiation": "off"
       },
       "suspicious": {
         "useAwait": "off",
-        "noUnnecessaryConditions": "off"
+        "noUnnecessaryConditions": "off",
+        "noShadow": "off"
       }
     }
   },

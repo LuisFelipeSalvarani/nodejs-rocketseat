@@ -21,7 +21,6 @@ const adapter = new PrismaPg(
 
 const prisma = new PrismaClient({ adapter })
 
-// biome-ignore lint/suspicious/noShadow: necessary
 function generatedUniqueDatabaseURL(schemaId: string) {
   if (!process.env.DATABASE_URL) {
     throw new Error("Please provider a DATABASE_URL environment variable.")
