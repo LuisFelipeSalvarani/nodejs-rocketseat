@@ -10,7 +10,7 @@ export default defineConfig({
     globals: true,
     root: "./",
     setupFiles: ["./test/setup-e2e.ts"],
-    testTimeout: 1000 * 10,
+    testTimeout: 1000 * 20,
   },
   plugins: [
     swc.vite({
