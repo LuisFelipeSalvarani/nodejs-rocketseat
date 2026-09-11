@@ -3,6 +3,7 @@ import { randomUUID } from "node:crypto"
 import { PrismaPg } from "@prisma/adapter-pg"
 import { config } from "dotenv"
 import { PrismaClient } from "../generated/prisma/client.js"
+import { DomainEvents } from "../src/core/events/domain-events.js"
 
 config({ path: ".env", override: true })
 config({ path: ".env.test", override: true })
@@ -39,6 +40,8 @@ beforeAll(() => {
   const databaseURL = generatedUniqueDatabaseURL(schemaId)
 
   process.env.DATABASE_URL = databaseURL
+
+  DomainEvents.shouldRun = false
 
   execSync("pnpm prisma migrate deploy")
 })
